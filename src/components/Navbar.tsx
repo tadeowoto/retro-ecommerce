@@ -2,22 +2,40 @@ import { NavLink } from "react-router-dom";
 import { navData } from "../data/navData";
 
 function Navbar() {
+  const activeStyle = `underline underline-offset-4`;
   return (
-    <nav>
-      <ul>
-        <li>
+    <nav className="w-full h-20 fixed z-10 py-5  px-8 bg-white flex justify-between items-center">
+      <ul className="flex ">
+        <li className="flex gap-3 font-nunito ">
           {navData.mainNav.map((item) => (
-            <NavLink to={item.to}>{item.text}</NavLink>
+            <NavLink
+              key={item.id}
+              to={item.to}
+              className={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              {item.text}
+            </NavLink>
           ))}
         </li>
       </ul>
-      <ul>
-        <a href="https://github.com/tadeowoto" rel="noreferrer" target="_blank">
-          Tadeowoto
+      <ul className="w-1/2 flex items-center justify-end ">
+        <a
+          href="https://github.com/tadeowoto"
+          rel="noreferrer"
+          target="_blank"
+          className="mr-3 text-[#1a1a1a] font-semibold"
+        >
+          @Tadeowoto
         </a>
-        <li>
+        <li className="flex gap-3 font-nunito ">
           {navData.userNav.map((item) => (
-            <NavLink to={item.to}>{item.text}</NavLink>
+            <NavLink
+              key={item.id}
+              to={item.to}
+              className={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              {item.text}
+            </NavLink>
           ))}
         </li>
       </ul>
