@@ -27,7 +27,7 @@ function Home() {
 
   return (
     <MainLayout>
-      <article className="grid grid-cols-4 gap-2 w-full max-w-screen place-items-center">
+      <article className="grid grid-cols-4 gap-10 w-[150vh] p-x-20 pt-20 box-border max-w-screen place-items-center bg-grayBg">
         {products.map((product: Product) => (
           <Card
             key={product.id}
