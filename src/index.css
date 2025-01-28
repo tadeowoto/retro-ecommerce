@@ -6,4 +6,9 @@
   --color-whiteBg: #fff;
   --color-greenMain: #98d19f;
   --color-blueMain: #a2d8ff;
+  --color-border: #333333;
+  --color-cardBg: #ececec;
+  --color-text: #4b4b4b;
+  --border-main: 12px;
+  --shadow-custom: "4px 4px 0 #333333";
 }
