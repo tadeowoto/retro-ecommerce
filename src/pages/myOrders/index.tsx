@@ -1,5 +1,11 @@
+import MainLayout from "../../components/MainLayout";
+
 function MyOrders() {
-  return <div>MyOrders;</div>;
+  return (
+    <MainLayout>
+      <div>MyOrders</div>
+    </MainLayout>
+  );
 }
 
 export default MyOrders;

@@ -4,7 +4,7 @@ import { navData } from "../data/navData";
 function Navbar() {
   const activeStyle = `underline underline-offset-4`;
   return (
-    <nav className="w-full h-20 fixed z-10 py-5  px-8 bg-white flex justify-between items-center">
+    <nav className="w-full h-20 fixed z-10 top-0 py-5  px-8 bg-white flex justify-between items-center">
       <ul className="flex ">
         <li className="flex gap-3 font-nunito ">
           {navData.mainNav.map((item) => (

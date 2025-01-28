@@ -1,5 +1,11 @@
+import MainLayout from "../../components/MainLayout";
+
 const SignIn = () => {
-  return <div>SignIn</div>;
+  return (
+    <MainLayout>
+      <div>SignIn</div>
+    </MainLayout>
+  );
 };
 
 export default SignIn;

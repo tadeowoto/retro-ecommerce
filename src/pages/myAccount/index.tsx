@@ -1,5 +1,11 @@
+import MainLayout from "../../components/MainLayout";
+
 const MyAccount = () => {
-  return <div>MyAccount</div>;
+  return (
+    <MainLayout>
+      <div>MyAccount</div>
+    </MainLayout>
+  );
 };
 
 export default MyAccount;

@@ -1,5 +1,11 @@
+import MainLayout from "../../components/MainLayout";
+
 const NotFound = () => {
-  return <div>NotFound</div>;
+  return (
+    <MainLayout>
+      <div>NotFound</div>
+    </MainLayout>
+  );
 };
 
 export default NotFound;
