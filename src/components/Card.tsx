@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { ecommerceContext } from "../context/context";
+
 type Props = {
   title: string;
   desc: string;
@@ -7,6 +10,8 @@ type Props = {
 };
 
 function Card({ title, desc, image, tags, price }: Props) {
+  const { count, setCount } = useContext(ecommerceContext);
+
   return (
     <div className="w-[300px] h-[310px] font-nunito border-border border-2 rounded-xl shadow-[4px_4px_0_#333] overflow-hidden hover:shadow-[6px_6px_0_#333] hover:transform hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all">
       <div className="w-full h-[120px]">
@@ -25,7 +30,10 @@ function Card({ title, desc, image, tags, price }: Props) {
         </div>
         <p className="tracking-wider text-text  text-sm line-clamp-3">{desc}</p>
         <div className="flex gap-2 items-center justify-between mt-auto">
-          <button className="mt-auto w-1/2 py-1 bg-blueMain border-2 border-border rounded-lg hover:bg-blue-300 transition-colors text-sm">
+          <button
+            className="mt-auto w-1/2 py-1 bg-blueMain border-2 border-border rounded-lg hover:bg-blue-300 transition-colors text-sm"
+            onClick={() => setCount(count + 1)}
+          >
             Add to cart
           </button>
           <span className=" text-text pr-2 font-bold">{price}</span>

@@ -1,7 +1,11 @@
 import { NavLink } from "react-router-dom";
 import { navData } from "../data/navData";
+import { useContext } from "react";
+import { ecommerceContext } from "../context/context";
 
 function Navbar() {
+  const { count } = useContext(ecommerceContext);
+
   const activeStyle = `underline underline-offset-4`;
   return (
     <nav className="w-full h-20 fixed z-10 top-0 py-5  px-8 bg-white flex justify-between items-center">
@@ -29,13 +33,17 @@ function Navbar() {
         </a>
         <li className="flex gap-3 font-nunito ">
           {navData.userNav.map((item) => (
-            <NavLink
-              key={item.id}
-              to={item.to}
-              className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
-              {item.text}
-            </NavLink>
+            <div key={item.id} className="flex items-center">
+              <NavLink
+                to={item.to}
+                className={({ isActive }) =>
+                  isActive ? activeStyle : undefined
+                }
+              >
+                {item.text}
+                {item.id === 4 && <span className="ml-1">{count}</span>}
+              </NavLink>
+            </div>
           ))}
         </li>
       </ul>

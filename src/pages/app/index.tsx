@@ -1,4 +1,5 @@
 import { useRoutes, BrowserRouter } from "react-router-dom";
+import { EcommerceContextProvider } from "../../context/context";
 import Home from "../home";
 import MyAccount from "../myAccount";
 import MyOrders from "../myOrders";
@@ -34,14 +35,16 @@ const AppRoutes = () => {
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1 pt-16">
-          <AppRoutes />
-        </main>
-      </div>
-    </BrowserRouter>
+    <EcommerceContextProvider>
+      <BrowserRouter>
+        <div className="min-h-screen flex flex-col">
+          <Navbar />
+          <main className="flex-1 pt-16">
+            <AppRoutes />
+          </main>
+        </div>
+      </BrowserRouter>
+    </EcommerceContextProvider>
   );
 }
 
