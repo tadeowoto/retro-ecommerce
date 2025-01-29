@@ -1,6 +1,7 @@
 import MainLayout from "../../components/MainLayout";
 import Card from "../../components/Card";
 import { useState, useEffect } from "react";
+import ProductDetail from "../../components/ProductDetail";
 
 interface Product {
   id: number;
@@ -27,7 +28,7 @@ function Home() {
 
   return (
     <MainLayout>
-      <article className="grid grid-cols-4 gap-10 w-[150vh] p-x-20 pt-20 box-border max-w-screen place-items-center bg-grayBg">
+      <article className="grid grid-cols-4 gap-4 w-[150vh] mt-20 max-w-screen place-items-center">
         {products.map((product: Product) => (
           <Card
             key={product.id}
@@ -39,6 +40,7 @@ function Home() {
           />
         ))}
       </article>
+      <ProductDetail />
     </MainLayout>
   );
 }
