@@ -16,7 +16,9 @@ export const EcommerceContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  //incrementa el carrito
   const [count, setCount] = useState(0);
+  //abre el detalle del producto
   const [isProductDetailOpen, setisProductDetailOpen] = useState(false);
 
   const handleProductDetail = () => {
