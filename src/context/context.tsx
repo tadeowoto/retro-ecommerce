@@ -3,6 +3,8 @@ import { createContext, useState } from "react";
 type EcommerceContextType = {
   count: number;
   setCount: (count: number) => void;
+  handleProductDetail: () => void;
+  isProductDetailOpen: boolean;
 };
 
 export const ecommerceContext = createContext<EcommerceContextType>(
@@ -15,9 +17,16 @@ export const EcommerceContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [count, setCount] = useState(0);
-  console.log(count);
+  const [isProductDetailOpen, setisProductDetailOpen] = useState(false);
+
+  const handleProductDetail = () => {
+    setisProductDetailOpen(!isProductDetailOpen);
+  };
+
   return (
-    <ecommerceContext.Provider value={{ count, setCount }}>
+    <ecommerceContext.Provider
+      value={{ count, setCount, handleProductDetail, isProductDetailOpen }}
+    >
       {children}
     </ecommerceContext.Provider>
   );
