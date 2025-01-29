@@ -55,7 +55,7 @@ export const navData = {
     {
       id: 4,
       to: "/cart",
-      text: "🛒",
+      isCart: true,
     },
   ],
 };

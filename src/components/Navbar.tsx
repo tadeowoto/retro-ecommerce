@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { navData } from "../data/navData";
 import { useContext } from "react";
 import { ecommerceContext } from "../context/context";
+import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 function Navbar() {
   const { count } = useContext(ecommerceContext);
@@ -40,8 +41,14 @@ function Navbar() {
                   isActive ? activeStyle : undefined
                 }
               >
-                {item.text}
-                {item.id === 4 && <span className="ml-1">{count}</span>}
+                <div className="flex">
+                  {item.isCart ? (
+                    <ShoppingCartIcon className="h-6 w-6 text-gray-800" />
+                  ) : (
+                    <span>{item.text}</span>
+                  )}
+                  {item.id === 4 && <span className="ml-1">{count}</span>}
+                </div>
               </NavLink>
             </div>
           ))}
