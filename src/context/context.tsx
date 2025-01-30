@@ -17,6 +17,11 @@ type EcommerceContextType = {
   isProductDetailOpen: boolean;
   productOpen: ProductType;
   setProductOpen: (product: ProductType) => void;
+  cart: ProductType[];
+  setCart: (cart: ProductType[]) => void;
+  isCheckoutOpen: boolean;
+  setisCheckoutOpen: (isCheckoutOpen: boolean) => void;
+  handleCheckout: () => void;
 };
 
 // Crea el contexto con un valor inicial vacío pero con aserción de tipo
@@ -39,6 +44,15 @@ export const EcommerceContextProvider = ({
     price: 0,
   });
 
+  //productos que se agregan al carrito
+  const [cart, setCart] = useState<ProductType[]>([]);
+  const [isCheckoutOpen, setisCheckoutOpen] = useState(false);
+
+  const handleCheckout = () => {
+    console.log(isCheckoutOpen);
+    setisCheckoutOpen(!isCheckoutOpen);
+  };
+
   const handleProductDetail = () => {
     setisProductDetailOpen(!isProductDetailOpen);
   };
@@ -52,6 +66,11 @@ export const EcommerceContextProvider = ({
         isProductDetailOpen,
         productOpen,
         setProductOpen,
+        cart,
+        setCart,
+        isCheckoutOpen,
+        setisCheckoutOpen,
+        handleCheckout,
       }}
     >
       {children}

@@ -16,6 +16,9 @@ function Card({ title, desc, image, tags, price }: Props) {
     handleProductDetail,
     isProductDetailOpen,
     setProductOpen,
+    cart,
+    setCart,
+    handleCheckout,
   } = useContext(ecommerceContext);
 
   const showProduct = ({ title, desc, image, tags, price }: Props) => {
@@ -29,6 +32,16 @@ function Card({ title, desc, image, tags, price }: Props) {
         price,
       });
     }
+  };
+
+  const addToCart = (
+    { title, desc, image, tags, price }: Props,
+    event: React.MouseEvent
+  ) => {
+    event.stopPropagation();
+    setCount(count + 1);
+    setCart([...cart, { title, desc, image, tags, price }]);
+    handleCheckout();
   };
 
   return (
@@ -54,7 +67,9 @@ function Card({ title, desc, image, tags, price }: Props) {
         <div className="flex gap-2 items-center justify-between mt-auto">
           <button
             className="mt-auto w-1/2 py-1 bg-blueMain border-2 border-border rounded-lg hover:bg-blue-300 transition-colors text-sm"
-            onClick={() => setCount(count + 1)}
+            onClick={(event) =>
+              addToCart({ title, desc, image, tags, price }, event)
+            }
           >
             Add to cart
           </button>

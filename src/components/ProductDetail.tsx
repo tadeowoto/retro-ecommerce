@@ -7,9 +7,7 @@ function ProductDetail() {
   const { isProductDetailOpen, handleProductDetail, productOpen } =
     useContext(ecommerceContext);
 
-  const { title, desc, image, tags, price } = productOpen;
-  console.log(title, desc, image, tags, price);
-
+  const { title, desc, image } = productOpen;
   return (
     <aside
       className={`${
