@@ -24,8 +24,6 @@ function Home() {
       .then((data) => setProducts(data));
   }, []);
 
-  console.log(products);
-
   return (
     <MainLayout>
       <article className="grid grid-cols-4 gap-4 w-[150vh] mt-20 max-w-screen place-items-center">

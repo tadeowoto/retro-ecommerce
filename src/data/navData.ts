@@ -3,7 +3,7 @@ export const navData = {
     {
       id: 1,
       to: "/",
-      text: "RetroE",
+      text: "My retro store",
     },
     {
       id: 2,
