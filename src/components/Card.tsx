@@ -21,6 +21,7 @@ function Card({ title, desc, image, tags, price }: Props) {
     handleCheckout,
     total,
     setTotal,
+    isCheckoutOpen,
   } = useContext(ecommerceContext);
 
   const showProduct = ({ title, desc, image, tags, price }: Props) => {
@@ -45,7 +46,11 @@ function Card({ title, desc, image, tags, price }: Props) {
     setCount(count + 1);
     setTotal(total + price);
     setCart([...cart, { id: count, title, desc, image, tags, price }]);
-    handleCheckout();
+    if (!isCheckoutOpen) {
+      handleCheckout();
+    } else {
+      return;
+    }
   };
   const isProductInCart = cart.some((item) => item.title === title);
 
