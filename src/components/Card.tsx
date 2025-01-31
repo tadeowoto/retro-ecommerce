@@ -19,12 +19,15 @@ function Card({ title, desc, image, tags, price }: Props) {
     cart,
     setCart,
     handleCheckout,
+    total,
+    setTotal,
   } = useContext(ecommerceContext);
 
   const showProduct = ({ title, desc, image, tags, price }: Props) => {
     if (!isProductDetailOpen) {
       handleProductDetail();
       setProductOpen({
+        id: count,
         title,
         desc,
         image,
@@ -40,7 +43,8 @@ function Card({ title, desc, image, tags, price }: Props) {
   ) => {
     event.stopPropagation();
     setCount(count + 1);
-    setCart([...cart, { title, desc, image, tags, price }]);
+    setTotal(total + price);
+    setCart([...cart, { id: count, title, desc, image, tags, price }]);
     handleCheckout();
   };
   const isProductInCart = cart.some((item) => item.title === title);

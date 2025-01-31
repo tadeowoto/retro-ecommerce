@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 
 // Define un tipo para los productos
 type ProductType = {
+  id: number;
   title: string;
   desc: string;
   image: string;
@@ -22,6 +23,8 @@ type EcommerceContextType = {
   isCheckoutOpen: boolean;
   setisCheckoutOpen: (isCheckoutOpen: boolean) => void;
   handleCheckout: () => void;
+  total: number;
+  setTotal: (total: number) => void;
 };
 
 // Crea el contexto con un valor inicial vacío pero con aserción de tipo
@@ -37,6 +40,7 @@ export const EcommerceContextProvider = ({
   const [count, setCount] = useState(0);
   const [isProductDetailOpen, setisProductDetailOpen] = useState(false);
   const [productOpen, setProductOpen] = useState<ProductType>({
+    id: 0,
     title: "",
     desc: "",
     image: "",
@@ -47,6 +51,7 @@ export const EcommerceContextProvider = ({
   //productos que se agregan al carrito
   const [cart, setCart] = useState<ProductType[]>([]);
   const [isCheckoutOpen, setisCheckoutOpen] = useState(false);
+  const [total, setTotal] = useState(0);
 
   const handleCheckout = () => {
     console.log(isCheckoutOpen);
@@ -71,6 +76,8 @@ export const EcommerceContextProvider = ({
         isCheckoutOpen,
         setisCheckoutOpen,
         handleCheckout,
+        total,
+        setTotal,
       }}
     >
       {children}

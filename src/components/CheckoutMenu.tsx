@@ -5,7 +5,25 @@ import "../components/styles.css";
 import OrderCard from "./OrderCard";
 
 const CheckoutMenu = () => {
-  const { isCheckoutOpen, handleCheckout, cart } = useContext(ecommerceContext);
+  const {
+    isCheckoutOpen,
+    handleCheckout,
+    cart,
+    setCart,
+    count,
+    setCount,
+    total,
+    setTotal,
+  } = useContext(ecommerceContext);
+
+  const handleDelete = (id: number) => {
+    const filteredCart = cart.filter((item) => item.id !== id);
+    setCount(count - 1);
+    const productRemoved = cart.find((item) => item.id === id);
+    const indexRemoved = cart.indexOf(productRemoved!);
+    setTotal(total - cart[indexRemoved].price);
+    setCart(filteredCart);
+  };
 
   return (
     <aside
@@ -22,10 +40,12 @@ const CheckoutMenu = () => {
       <div className="flex flex-col gap-4 p-6">
         {cart.map((item) => (
           <OrderCard
+            id={item.id}
             key={item.title}
             title={item.title}
             image={item.image}
             price={item.price}
+            handleDelete={handleDelete}
           />
         ))}
       </div>
