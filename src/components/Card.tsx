@@ -43,6 +43,7 @@ function Card({ title, desc, image, tags, price }: Props) {
     setCart([...cart, { title, desc, image, tags, price }]);
     handleCheckout();
   };
+  const isProductInCart = cart.some((item) => item.title === title);
 
   return (
     <div
@@ -66,12 +67,17 @@ function Card({ title, desc, image, tags, price }: Props) {
         <p className="tracking-wider text-text  text-sm line-clamp-3">{desc}</p>
         <div className="flex gap-2 items-center justify-between mt-auto">
           <button
-            className="mt-auto w-1/2 py-1 bg-blueMain border-2 border-border rounded-lg hover:bg-blue-300 transition-colors text-sm"
+            className={` ${
+              isProductInCart
+                ? "bg-warning text-white  cursor-not-allowed opacity-40 font-nunito shadow-[4px_4px_0_#555]"
+                : "bg-blueMain"
+            } mt-auto w-1/2 py-1 bg-blueMain border-2 border-border rounded-lg  transition-colors text-sm hover:cursor-pointer hover:text-black shadow-[4px_4px_0_#555]`}
             onClick={(event) =>
               addToCart({ title, desc, image, tags, price }, event)
             }
+            disabled={isProductInCart}
           >
-            Add to cart
+            {isProductInCart ? "Added ✓" : "Add to cart"}
           </button>
           <span className=" text-text pr-2 font-bold">{price}</span>
         </div>
