@@ -3,6 +3,7 @@ import Card from "../../components/Card";
 import { useState, useEffect } from "react";
 import ProductDetail from "../../components/ProductDetail";
 import CheckoutMenu from "../../components/CheckoutMenu";
+import Footer from "../../components/Footer";
 
 interface Product {
   id: number;
@@ -41,6 +42,7 @@ function Home() {
       </article>
       <CheckoutMenu />
       <ProductDetail />
+      <Footer />
     </MainLayout>
   );
 }
