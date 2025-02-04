@@ -88,7 +88,7 @@ function Card({ title, desc, image, tags, price }: Props) {
           >
             {isProductInCart ? "Added ✓" : "Add to cart"}
           </button>
-          <span className=" text-text pr-2 font-bold">{price}</span>
+          <span className=" text-text pr-2 font-bold">${price}</span>
         </div>
       </div>
     </div>

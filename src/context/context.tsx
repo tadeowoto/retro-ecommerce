@@ -10,6 +10,13 @@ type ProductType = {
   price: number;
 };
 
+type OrderType = {
+  date: string;
+  products: Array<ProductType>;
+  totalProducts: number;
+  totalPrice: number;
+};
+
 // Define el tipo del contexto
 type EcommerceContextType = {
   count: number;
@@ -25,6 +32,8 @@ type EcommerceContextType = {
   handleCheckout: () => void;
   total: number;
   setTotal: (total: number) => void;
+  order: Array<OrderType>;
+  setOrder: (order: Array<OrderType>) => void;
 };
 
 // Crea el contexto con un valor inicial vacío pero con aserción de tipo
@@ -53,6 +62,8 @@ export const EcommerceContextProvider = ({
   const [isCheckoutOpen, setisCheckoutOpen] = useState(false);
   const [total, setTotal] = useState(0);
 
+  const [order, setOrder] = useState<Array<OrderType>>([]);
+
   const handleCheckout = () => {
     console.log(isCheckoutOpen);
     setisCheckoutOpen(!isCheckoutOpen);
@@ -78,6 +89,8 @@ export const EcommerceContextProvider = ({
         handleCheckout,
         total,
         setTotal,
+        order,
+        setOrder,
       }}
     >
       {children}

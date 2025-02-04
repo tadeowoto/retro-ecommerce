@@ -3,7 +3,7 @@ type Props = {
 };
 const MainLayout = ({ children }: Props) => {
   return (
-    <div className="w-full min-h-screen flex justify-center items-center flex-col bg-grayBg">
+    <div className="w-full  flex justify-center items-center flex-col bg-grayBg">
       {children}
     </div>
   );
