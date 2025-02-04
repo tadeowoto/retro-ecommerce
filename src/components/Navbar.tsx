@@ -10,19 +10,33 @@ function Navbar() {
   const activeStyle = `underline underline-offset-4`;
   return (
     <nav className="w-full h-20 fixed z-10 top-0 py-5  px-8 bg-blueMain border-b-2 border-border flex justify-between items-center">
-      <ul className="flex ">
-        <li className="flex gap-3 font-nunito ">
-          {navData.mainNav.map((item) => (
-            <NavLink
-              key={item.id}
-              to={item.to}
-              className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
-              {item.text}
-            </NavLink>
-          ))}
-        </li>
+      <ul className="flex gap-2 items-center ">
+        {navData.mainNav.map((item) =>
+          item.isLogo ? (
+            <li key={item.id}>
+              <NavLink to={item.to}>
+                <img
+                  src="../../public/reactRetroLogo-8_tvcOxs (1).png"
+                  alt="Logo"
+                  className="w-10 h-10"
+                />
+              </NavLink>
+            </li>
+          ) : (
+            <li key={item.id} className="flex gap-3 font-nunito">
+              <NavLink
+                to={item.to}
+                className={({ isActive }) =>
+                  isActive ? activeStyle : undefined
+                }
+              >
+                {item.text}
+              </NavLink>
+            </li>
+          )
+        )}
       </ul>
+
       <ul className="w-1/2 flex items-center justify-end ">
         <a
           href="https://github.com/tadeowoto"
