@@ -6,6 +6,7 @@ import MyOrders from "../myOrders";
 import NotFound from "../notFound";
 import SignIn from "../signIn";
 import Navbar from "../../components/Navbar";
+import HistoryOrders from "../../HistoryOrders";
 
 const AppRoutes = () => {
   const routes = useRoutes([
@@ -19,7 +20,7 @@ const AppRoutes = () => {
     },
     {
       path: "/my-orders",
-      element: <MyOrders />,
+      element: <HistoryOrders />,
     },
     {
       path: "/sign-in",

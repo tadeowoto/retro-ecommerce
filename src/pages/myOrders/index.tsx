@@ -1,6 +1,8 @@
 import MainLayout from "../../components/MainLayout";
 import { useContext } from "react";
 import { ecommerceContext } from "../../context/context";
+import { ChevronLeftIcon } from "@heroicons/react/16/solid";
+import { Link } from "react-router-dom";
 import OrderCard from "../../components/OrderCard";
 import Footer from "../../components/Footer";
 import "./orders.css";
@@ -10,10 +12,19 @@ function MyOrders() {
 
   return (
     <MainLayout>
-      <div className=" order-container w-full flex justify-center items-center flex-col">
-        <h1 className="text-2xl font-bold font-nunito text-text mb-10">
-          Order
-        </h1>
+      <div className="order-container w-full flex justify-center items-center flex-col">
+        <div className="flex w-fit gap-10 items-center justify-between mb-10">
+          <div>
+            <Link to={"/my-orders"}>
+              <ChevronLeftIcon className="w-6 h-6" />
+            </Link>
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold font-nunito text-text">
+              My orders
+            </h1>
+          </div>
+        </div>
         <div className="flex flex-col gap-2">
           {order?.slice(-1)[0].products.map((item) => (
             <OrderCard
