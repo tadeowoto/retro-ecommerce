@@ -11,16 +11,18 @@ const HistoryOrders = () => {
 
   return (
     <MainLayout>
-      <h1>My History Orders</h1>
-      {order.map((item, index) => (
-        <Link key={index} to={`/order/${item.date}`}>
-          <OrdersCard
-            key={item.date}
-            totalPrice={item.totalPrice}
-            totalProducts={item.totalProducts}
-          />
-        </Link>
-      ))}
+      <div className="order-container w-full flex justify-center items-center flex-col">
+        <h1>My History Orders</h1>
+        {order.map((item, index) => (
+          <Link key={index} to={`/my-orders/${index}`}>
+            <OrdersCard
+              key={item.date}
+              totalPrice={item.totalPrice}
+              totalProducts={item.totalProducts}
+            />
+          </Link>
+        ))}
+      </div>
       <Footer />
     </MainLayout>
   );

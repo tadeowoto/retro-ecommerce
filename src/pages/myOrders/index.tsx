@@ -9,6 +9,18 @@ import "./orders.css";
 
 function MyOrders() {
   const { order } = useContext(ecommerceContext);
+  const currentPath = window.location.pathname;
+  let index: number | undefined = parseInt(
+    currentPath.substring(currentPath.lastIndexOf("/") + 1)
+  );
+
+  if (isNaN(index) || index < 0) {
+    index = undefined;
+  }
+
+  if (currentPath.endsWith("/last")) {
+    index = order?.length ? order.length - 1 : undefined;
+  }
 
   return (
     <MainLayout>
@@ -26,15 +38,16 @@ function MyOrders() {
           </div>
         </div>
         <div className="flex flex-col gap-2">
-          {order?.slice(-1)[0].products.map((item) => (
-            <OrderCard
-              id={item.id}
-              key={item.title}
-              title={item.title}
-              image={item.image}
-              price={item.price}
-            />
-          ))}
+          {typeof index === "number" &&
+            order?.[index]?.products?.map((item) => (
+              <OrderCard
+                id={item.id}
+                key={item.title}
+                title={item.title}
+                image={item.image}
+                price={item.price}
+              />
+            ))}
         </div>
       </div>
       <Footer />
