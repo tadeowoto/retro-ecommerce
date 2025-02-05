@@ -56,7 +56,7 @@ function Card({ title, desc, image, tags, price }: Props) {
 
   return (
     <div
-      className="w-[300px] h-[310px] hover:cursor-pointer font-nunito border-border border-2 rounded-xl shadow-[4px_4px_0_#333] overflow-hidden hover:shadow-[6px_6px_0_#333] hover:transform hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
+      className="w-[300px] h-[310px] font-nunito border-border border-2 rounded-xl shadow-[4px_4px_0_#333] overflow-hidden hover:shadow-[6px_6px_0_#333] hover:transform hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
       onClick={() => showProduct({ title, desc, image, tags, price })}
     >
       <div className="w-full h-[120px]">
