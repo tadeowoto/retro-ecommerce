@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 // Define un tipo para los productos
 type ProductType = {
@@ -15,6 +15,17 @@ type OrderType = {
   products: Array<ProductType>;
   totalProducts: number;
   totalPrice: number;
+};
+
+type Product = {
+  id: number;
+  title: string;
+  description: string;
+  images: string[];
+  category: {
+    name: string;
+  };
+  price: number;
 };
 
 // Define el tipo del contexto
@@ -34,6 +45,8 @@ type EcommerceContextType = {
   setTotal: (total: number) => void;
   order: Array<OrderType>;
   setOrder: (order: Array<OrderType>) => void;
+  products: Product[];
+  setProducts: (products: Product[]) => void;
 };
 
 // Crea el contexto con un valor inicial vacío pero con aserción de tipo
@@ -73,6 +86,15 @@ export const EcommerceContextProvider = ({
     setisProductDetailOpen(!isProductDetailOpen);
   };
 
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    //https://api.escuelajs.co/api/v1/products -> all products
+    fetch("https://api.escuelajs.co/api/v1/products?offset=0&limit=20")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
+
   return (
     <ecommerceContext.Provider
       value={{
@@ -91,6 +113,8 @@ export const EcommerceContextProvider = ({
         setTotal,
         order,
         setOrder,
+        products,
+        setProducts,
       }}
     >
       {children}

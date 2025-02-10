@@ -20,7 +20,7 @@ const HistoryOrders = () => {
         </p>
         <div className="mt-10">
           <Link to="/">
-            <HomeIcon className="w-10 h-10 text-black" />
+            <HomeIcon className="w-10 h-10  text-black" />
           </Link>
         </div>
       </div>
