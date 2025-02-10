@@ -47,6 +47,9 @@ type EcommerceContextType = {
   setOrder: (order: Array<OrderType>) => void;
   products: Product[];
   setProducts: (products: Product[]) => void;
+  searchByTitle: string;
+  setSearchByTitle: (searchByTitle: string) => void;
+  filteredProducts: Product[];
 };
 
 // Crea el contexto con un valor inicial vacío pero con aserción de tipo
@@ -87,6 +90,9 @@ export const EcommerceContextProvider = ({
   };
 
   const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [searchByTitle, setSearchByTitle] = useState("");
+  console.log(searchByTitle);
 
   useEffect(() => {
     //https://api.escuelajs.co/api/v1/products -> all products
@@ -94,6 +100,19 @@ export const EcommerceContextProvider = ({
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
+
+  const filteredItemsByTitle = (products: Product[], searchByTitle: string) => {
+    return products?.filter((product) =>
+      product.title.toLowerCase().includes(searchByTitle.toLowerCase())
+    );
+  };
+  useEffect(() => {
+    if (searchByTitle) {
+      setFilteredProducts(filteredItemsByTitle(products, searchByTitle));
+    } else {
+      setFilteredProducts(products);
+    }
+  }, [products, searchByTitle]);
 
   return (
     <ecommerceContext.Provider
@@ -115,6 +134,9 @@ export const EcommerceContextProvider = ({
         setOrder,
         products,
         setProducts,
+        searchByTitle,
+        setSearchByTitle,
+        filteredProducts,
       }}
     >
       {children}
