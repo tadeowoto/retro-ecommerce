@@ -121,10 +121,6 @@ export const EcommerceContextProvider = ({
   useEffect(() => {
     let result = products;
 
-    if (searchByTitle) {
-      result = filteredItemsByTitle(result, searchByTitle);
-    }
-
     if (categoryFilter) {
       if (categoryFilter === "All" || categoryFilter === "Home") {
         result = products;
@@ -132,6 +128,11 @@ export const EcommerceContextProvider = ({
         result = filteredProductsByCategory(result, categoryFilter);
       }
     }
+
+    if (searchByTitle) {
+      result = filteredItemsByTitle(result, searchByTitle);
+    }
+
     setFilteredProducts(result);
   }, [products, searchByTitle, categoryFilter]);
 
