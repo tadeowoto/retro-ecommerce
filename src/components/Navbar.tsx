@@ -16,7 +16,7 @@ function Navbar() {
             <li key={item.id} onClick={() => setCategoryFilter(item.text)}>
               <NavLink to={item.to}>
                 <img
-                  src="../../public/reactRetroLogo-8_tvcOxs (1).png"
+                  src="./reactRetroLogo-8_tvcOxs (1).png"
                   alt="Logo"
                   className="w-10 h-10"
                 />
