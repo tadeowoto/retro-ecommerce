@@ -5,7 +5,7 @@ import { ecommerceContext } from "../context/context";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 function Navbar() {
-  const { count } = useContext(ecommerceContext);
+  const { count, setCategoryFilter } = useContext(ecommerceContext);
 
   const activeStyle = `underline underline-offset-4`;
   return (
@@ -13,7 +13,7 @@ function Navbar() {
       <ul className="flex gap-2 items-center ">
         {navData.mainNav.map((item) =>
           item.isLogo ? (
-            <li key={item.id}>
+            <li key={item.id} onClick={() => setCategoryFilter(item.text)}>
               <NavLink to={item.to}>
                 <img
                   src="../../public/reactRetroLogo-8_tvcOxs (1).png"
@@ -23,7 +23,11 @@ function Navbar() {
               </NavLink>
             </li>
           ) : (
-            <li key={item.id} className="flex gap-3 font-nunito">
+            <li
+              key={item.id}
+              onClick={() => setCategoryFilter(item.text)}
+              className="flex gap-3 font-nunito"
+            >
               <NavLink
                 to={item.to}
                 className={({ isActive }) =>

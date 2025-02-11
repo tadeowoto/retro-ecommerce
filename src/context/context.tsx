@@ -50,6 +50,8 @@ type EcommerceContextType = {
   searchByTitle: string;
   setSearchByTitle: (searchByTitle: string) => void;
   filteredProducts: Product[];
+  categoryFilter: string;
+  setCategoryFilter: (categoryFilter: string) => void;
 };
 
 // Crea el contexto con un valor inicial vacío pero con aserción de tipo
@@ -92,10 +94,20 @@ export const EcommerceContextProvider = ({
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [searchByTitle, setSearchByTitle] = useState("");
-  console.log(searchByTitle);
+  const [categoryFilter, setCategoryFilter] = useState("");
+
+  const filteredProductsByCategory = (
+    products: Product[],
+    searchByCategory: string
+  ) => {
+    return products?.filter(
+      (product) =>
+        product.category.name.toLowerCase() ===
+        searchByCategory.toLocaleLowerCase()
+    );
+  }; // aca tengo los productos filtrados por categoria
 
   useEffect(() => {
-    //https://api.escuelajs.co/api/v1/products -> all products
     fetch("https://api.escuelajs.co/api/v1/products?offset=0&limit=20")
       .then((res) => res.json())
       .then((data) => setProducts(data));
@@ -107,12 +119,23 @@ export const EcommerceContextProvider = ({
     );
   };
   useEffect(() => {
+    let result = products;
+
     if (searchByTitle) {
-      setFilteredProducts(filteredItemsByTitle(products, searchByTitle));
-    } else {
-      setFilteredProducts(products);
+      result = filteredItemsByTitle(result, searchByTitle);
     }
-  }, [products, searchByTitle]);
+
+    if (categoryFilter) {
+      if (categoryFilter === "All" || categoryFilter === "Home") {
+        result = products;
+      } else {
+        result = filteredProductsByCategory(result, categoryFilter);
+      }
+    }
+    setFilteredProducts(result);
+  }, [products, searchByTitle, categoryFilter]);
+
+  console.log(filteredProducts);
 
   return (
     <ecommerceContext.Provider
@@ -137,6 +160,8 @@ export const EcommerceContextProvider = ({
         searchByTitle,
         setSearchByTitle,
         filteredProducts,
+        categoryFilter,
+        setCategoryFilter,
       }}
     >
       {children}
