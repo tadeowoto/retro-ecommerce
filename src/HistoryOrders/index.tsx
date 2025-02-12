@@ -11,6 +11,7 @@ const HistoryOrders = () => {
   const { order } = useContext(ecommerceContext);
 
   let renderHistoryMessage;
+  console.log("Ordenn" + order.length);
 
   if (order.length === 0) {
     renderHistoryMessage = (
@@ -26,22 +27,24 @@ const HistoryOrders = () => {
       </div>
     );
   } else {
-    <div className="order-container w-full flex justify-center items-center flex-col">
-      <h1 className="text-2xl font-bold font-nunito text-text mb-10">
-        My History Orders
-      </h1>
-      <div className="flex flex-col gap-4">
-        {order.map((item, index) => (
-          <OrdersCard
-            key={item.date}
-            date={item.date}
-            totalPrice={item.totalPrice}
-            totalProducts={item.totalProducts}
-            index={index}
-          />
-        ))}
+    renderHistoryMessage = (
+      <div className="order-container w-full flex justify-center items-center flex-col">
+        <h1 className="text-2xl font-bold font-nunito text-text mb-10">
+          My History Orders
+        </h1>
+        <div className="flex flex-col gap-4">
+          {order.map((item, index) => (
+            <OrdersCard
+              key={item.date}
+              date={item.date}
+              totalPrice={item.totalPrice}
+              totalProducts={item.totalProducts}
+              index={index}
+            />
+          ))}
+        </div>
       </div>
-    </div>;
+    );
   }
 
   return (

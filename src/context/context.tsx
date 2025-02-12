@@ -83,7 +83,6 @@ export const EcommerceContextProvider = ({
   const [order, setOrder] = useState<Array<OrderType>>([]);
 
   const handleCheckout = () => {
-    console.log(isCheckoutOpen);
     setisCheckoutOpen(!isCheckoutOpen);
   };
 
@@ -135,8 +134,6 @@ export const EcommerceContextProvider = ({
 
     setFilteredProducts(result);
   }, [products, searchByTitle, categoryFilter]);
-
-  console.log(filteredProducts);
 
   return (
     <ecommerceContext.Provider
