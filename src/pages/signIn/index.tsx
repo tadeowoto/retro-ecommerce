@@ -12,13 +12,13 @@ const SignIn = () => {
 
         {!showForm ? (
           <div className="flex flex-col gap-4">
-            <button
-              onClick={() => setShowForm(true)}
-              className=" bg-greenMain flex gap-2 items-center justify-center text-sm font-nunito w-32 px-4 py-2 border-2 border-border rounded-md shadow-[3px_3px_0_#333] hover:shadow-[5px_5px_0_#333] hover:transform hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all hover:cursor-pointer"
-            >
+            <button className=" bg-greenMain flex gap-2 items-center justify-center text-sm font-nunito w-32 px-4 py-2 border-2 border-border rounded-md shadow-[3px_3px_0_#333] hover:shadow-[5px_5px_0_#333] hover:transform hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all hover:cursor-pointer">
               Log in
             </button>
-            <button className=" bg-blueMain flex gap-2 items-center justify-center text-sm font-nunito w-32 px-4 py-2 border-2 border-border rounded-md shadow-[3px_3px_0_#333] hover:shadow-[5px_5px_0_#333] hover:transform hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all hover:cursor-pointer">
+            <button
+              onClick={() => setShowForm(true)}
+              className=" bg-blueMain flex gap-2 items-center justify-center text-sm font-nunito w-32 px-4 py-2 border-2 border-border rounded-md shadow-[3px_3px_0_#333] hover:shadow-[5px_5px_0_#333] hover:transform hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all hover:cursor-pointer"
+            >
               Sign up
             </button>
             <a href="/">forgot password</a>
@@ -75,7 +75,7 @@ const SignIn = () => {
                 type="submit"
                 className="bg-blueMain flex gap-2 items-center justify-center text-sm font-nunito w-32 px-4 py-2 border-2 border-border rounded-md shadow-[3px_3px_0_#333] hover:shadow-[5px_5px_0_#333] hover:transform hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all hover:cursor-pointer"
               >
-                Enviar
+                Create
               </button>
               <button
                 type="button"

@@ -1,5 +1,6 @@
 import { useRoutes, BrowserRouter } from "react-router-dom";
 import { EcommerceContextProvider } from "../../context/context";
+import { UserAuthProvider } from "../../context/userAuth";
 import Home from "../home";
 import MyAccount from "../myAccount";
 import MyOrders from "../myOrders";
@@ -68,16 +69,18 @@ const AppRoutes = () => {
 
 function App() {
   return (
-    <EcommerceContextProvider>
-      <BrowserRouter>
-        <div className="min-h-screen flex flex-col">
-          <Navbar />
-          <main className="flex-1 pt-16">
-            <AppRoutes />
-          </main>
-        </div>
-      </BrowserRouter>
-    </EcommerceContextProvider>
+    <UserAuthProvider>
+      <EcommerceContextProvider>
+        <BrowserRouter>
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+            <main className="flex-1 pt-16">
+              <AppRoutes />
+            </main>
+          </div>
+        </BrowserRouter>
+      </EcommerceContextProvider>
+    </UserAuthProvider>
   );
 }
 
