@@ -23,7 +23,9 @@ const SignIn = () => {
     if (isLoggedIn) {
       return (
         <div className="w-full signin-container flex justify-center items-center flex-col">
-          <h1 className="text-4xl font-bold font-nunito mb-10">Welcome</h1>
+          <h1 className="text-4xl font-bold font-nunito mb-10">
+            Welcome {name}
+          </h1>
           <div className="flex flex-col gap-4">
             <Link to="/">
               <button className=" bg-greenMain flex gap-2 items-center justify-center text-sm font-nunito w-32 px-4 py-2 border-2 border-border rounded-md shadow-[3px_3px_0_#333] hover:shadow-[5px_5px_0_#333] hover:transform hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all hover:cursor-pointer">

@@ -31,20 +31,19 @@ export const UserAuthProvider = ({
   const [userEmail, setUserEmail] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // en este useEffect agarro la sesion que hay en el localStorage
   useEffect(() => {
     const storedName = localStorage.getItem("name");
     const storedPassword = localStorage.getItem("password");
     const storedEmail = localStorage.getItem("userEmail");
     const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
 
-    console.log("Estado inicial de isLoggedIn:", storedIsLoggedIn);
-
+    // cambio el estado con las variables del localStorage
     if (storedName) setName(storedName);
     if (storedPassword) setPassword(storedPassword);
     if (storedEmail) setUserEmail(storedEmail);
     if (storedIsLoggedIn === "true") {
       setIsLoggedIn(true);
-      console.log("Usuario está logueado:", true);
     }
   }, []);
 
@@ -59,7 +58,6 @@ export const UserAuthProvider = ({
     localStorage.setItem("password", password);
     localStorage.setItem("userEmail", userEmail);
     localStorage.setItem("isLoggedIn", "true");
-    console.log("Login completado, isLoggedIn:", true);
   };
 
   return (
