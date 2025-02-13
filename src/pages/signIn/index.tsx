@@ -1,12 +1,62 @@
 import MainLayout from "../../components/MainLayout";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./signin.css";
+import { userAuthContext } from "../../context/userAuth";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
   const [showForm, setShowForm] = useState(false);
 
-  return (
-    <MainLayout>
+  const {
+    setName,
+    setPassword,
+    handleSubmitLogin,
+    setUserEmail,
+    userEmail,
+    name,
+    password,
+    isLoggedIn,
+    setIsLoggedIn,
+  } = useContext(userAuthContext);
+
+  const showUiLoggued = () => {
+    if (isLoggedIn) {
+      return (
+        <div className="w-full signin-container flex justify-center items-center flex-col">
+          <h1 className="text-4xl font-bold font-nunito mb-10">Welcome</h1>
+          <div className="flex flex-col gap-4">
+            <Link to="/">
+              <button className=" bg-greenMain flex gap-2 items-center justify-center text-sm font-nunito w-32 px-4 py-2 border-2 border-border rounded-md shadow-[3px_3px_0_#333] hover:shadow-[5px_5px_0_#333] hover:transform hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all hover:cursor-pointer">
+                Go to Home
+              </button>
+            </Link>
+            <Link to="my-account">
+              <button className=" bg-blueMain flex gap-2 items-center justify-center text-sm font-nunito w-32 px-4 py-2 border-2 border-border rounded-md shadow-[3px_3px_0_#333] hover:shadow-[5px_5px_0_#333] hover:transform hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all hover:cursor-pointer">
+                My account
+              </button>
+            </Link>
+            <Link to="/">
+              <button
+                onClick={() => setIsLoggedIn(false)}
+                className=" bg-grayBg flex gap-2 items-center justify-center text-sm font-nunito w-32 px-4 py-2 border-2 border-border rounded-md shadow-[3px_3px_0_#333] hover:shadow-[5px_5px_0_#333] hover:transform hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all hover:cursor-pointer"
+              >
+                Sign out
+              </button>
+            </Link>
+            <a
+              href="https://www.youtube.com/watch?v=xsvZOUnXdWM"
+              target="_blank"
+            >
+              forgot password
+            </a>
+          </div>
+        </div>
+      );
+    }
+  };
+
+  const showUiNotLogged = () => {
+    return (
       <div className="w-full signin-container flex justify-center items-center flex-col">
         <h1 className="text-4xl font-bold font-nunito mb-10">Welcome</h1>
 
@@ -25,7 +75,7 @@ const SignIn = () => {
           </div>
         ) : (
           <form
-            onSubmit={() => console.log("enviando")}
+            onSubmit={handleSubmitLogin}
             className="flex flex-col gap-4 w-64 font-nunito"
           >
             <div className="flex flex-col gap-2">
@@ -39,7 +89,9 @@ const SignIn = () => {
                 type="text"
                 id="name"
                 name="name"
+                value={name}
                 className="border-2 border-border rounded-md shadow-[3px_3px_0_#333] p-2"
+                onChange={(event) => setName(event.target.value)}
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -53,7 +105,9 @@ const SignIn = () => {
                 type="email"
                 id="email"
                 name="email"
+                value={userEmail}
                 className="border-2 border-border rounded-md shadow-[3px_3px_0_#333] p-2"
+                onChange={(event) => setUserEmail(event.target.value)}
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -66,8 +120,10 @@ const SignIn = () => {
               <input
                 type="password"
                 id="password"
+                value={password}
                 name="password"
                 className="border-2 border-border rounded-md shadow-[3px_3px_0_#333] p-2"
+                onChange={(event) => setPassword(event.target.value)}
               />
             </div>
             <div className="flex gap-2 mt-4">
@@ -77,6 +133,7 @@ const SignIn = () => {
               >
                 Create
               </button>
+
               <button
                 type="button"
                 onClick={() => setShowForm(false)}
@@ -88,7 +145,11 @@ const SignIn = () => {
           </form>
         )}
       </div>
-    </MainLayout>
+    );
+  };
+
+  return (
+    <MainLayout>{isLoggedIn ? showUiLoggued() : showUiNotLogged()}</MainLayout>
   );
 };
 
