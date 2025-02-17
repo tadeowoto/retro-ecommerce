@@ -1,6 +1,7 @@
-import { useRoutes, BrowserRouter } from "react-router-dom";
+import { useRoutes, BrowserRouter, Navigate } from "react-router-dom";
 import { EcommerceContextProvider } from "../../context/context";
-import { UserAuthProvider } from "../../context/userAuth";
+import { useContext } from "react";
+import { userAuthContext, UserAuthProvider } from "../../context/userAuth";
 import Home from "../home";
 import MyAccount from "../myAccount";
 import MyOrders from "../myOrders";
@@ -10,10 +11,12 @@ import Navbar from "../../components/Navbar";
 import HistoryOrders from "../../HistoryOrders";
 
 const AppRoutes = () => {
+  const { isLoggedIn } = useContext(userAuthContext);
+
   const routes = useRoutes([
     {
       path: "/",
-      element: <Home />,
+      element: isLoggedIn ? <Home /> : <Navigate to="/sign-in" />,
     },
     {
       path: "clothes",
@@ -41,11 +44,11 @@ const AppRoutes = () => {
     },
     {
       path: "/my-account",
-      element: <MyAccount />,
+      element: isLoggedIn ? <MyAccount /> : <Navigate to="/sign-in" />,
     },
     {
       path: "/my-orders",
-      element: <HistoryOrders />,
+      element: isLoggedIn ? <HistoryOrders /> : <Navigate to="/sign-in" />,
     },
     {
       path: "/sign-in",
@@ -53,11 +56,11 @@ const AppRoutes = () => {
     },
     {
       path: "/my-orders/last",
-      element: <MyOrders />,
+      element: isLoggedIn ? <MyOrders /> : <Navigate to="/sign-in" />,
     },
     {
       path: "/my-orders/:id",
-      element: <MyOrders />,
+      element: isLoggedIn ? <MyOrders /> : <Navigate to="/sign-in" />,
     },
     {
       path: "*",
