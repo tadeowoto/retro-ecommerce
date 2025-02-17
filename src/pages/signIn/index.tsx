@@ -38,7 +38,7 @@ const SignIn = () => {
                 Go to Home
               </button>
             </Link>
-            <Link to="my-account">
+            <Link to="/my-account">
               <button className=" bg-blueMain flex gap-2 items-center justify-center text-sm font-nunito w-32 px-4 py-2 border-2 border-border rounded-md shadow-[3px_3px_0_#333] hover:shadow-[5px_5px_0_#333] hover:transform hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all hover:cursor-pointer">
                 My account
               </button>
